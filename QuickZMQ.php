@@ -16,6 +16,19 @@ class QuickZMQ
 	protected static $error = null;
 
 	/**
+	 * Returns the ZMQ version
+	 *
+	 * @return string|bool ZMQ version or false if the php extension or ZMQ itself is not installed
+	 */
+	public static function version()
+	{
+		if(class_exists("ZMQ") && defined("ZMQ::LIBZMQ_VER")) {
+			return ZMQ::LIBZMQ_VER;
+		}
+		return false;
+	}
+
+	/**
 	 * Connect to ZMQ socket
 	 *
 	 * @param string $address Socket address
